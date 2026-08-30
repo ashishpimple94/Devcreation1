@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Our Story — Dev Creation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFFDF8;
+  --surface:#FFFFFF;
+  --surface-2:#FAF6EF;
+  --ink:#1C1410;
+  --ink-2:#3D312A;
+  --ink-3:#5C4F46;
+  --body-c:#5A4E46;
+  --gold:#B8943F;
+  --gold-lt:#D4B06A;
+  --copper:#C17F3E;
+  --accent:#D4956A;
+  --deep:#2C1810;
+  --forest:#8B5E3C;
+  --forest-lt:#B08968;
+  --line:rgba(28,20,16,.1);
+  --line-soft:rgba(28,20,16,.05);
+  --display:"Playfair Display",Georgia,serif;
+  --display-alt:"Cormorant Garamond",Georgia,serif;
+  --body:"DM Sans",system-ui,sans-serif;
+  --util:"JetBrains Mono",ui-monospace,monospace;
+  --pad:clamp(24px,5vw,80px);
+  --radius:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  background-image:linear-gradient(170deg,#FFFDF8 0%,#FDF6EA 50%,#F5EBD8 100%);
+  color:var(--body-c);font-family:var(--body);font-weight:400;font-size:1rem;
+  line-height:1.72;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh;
+}
+::selection{background:var(--deep);color:#fff}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
+
+.util{font-family:var(--util);font-size:.65rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--copper)}
+
+/* --- Announcement Bar --- */
+.announce-bar{
+  background:#2C1810;color:var(--gold-lt);
+  font-family:var(--util);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;
+  text-align:center;padding:11px var(--pad);
+  display:flex;align-items:center;justify-content:center;gap:18px;
+}
+.announce-bar a{color:var(--gold-lt);text-decoration:underline;text-underline-offset:3px}
+.announce-bar a:hover{color:#fff}
+
+/* --- Header --- */
+header{
+  position:sticky;top:0;z-index:60;
+  background:var(--paper);border-bottom:1px solid var(--line);
+  backdrop-filter:blur(14px);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px var(--pad);gap:24px;
+}
+.mark{display:flex;align-items:center;line-height:1;flex-shrink:0}
+.logo-img{height:80px;width:auto;object-fit:contain}
+.header-nav{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  display:flex;align-items:center;gap:32px;
+}
+.header-nav a{
+  font-family:var(--body);font-size:.82rem;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);transition:color .2s;position:relative;white-space:nowrap;
+}
+.header-nav a:hover,.header-nav a.active{color:var(--ink)}
+.header-nav a::after{
+  content:"";position:absolute;left:0;bottom:-4px;width:0;height:1.5px;
+  background:var(--gold);transition:width .25s ease;
+}
+.header-nav a:hover::after,.header-nav a.active::after{width:100%}
+.header-icons{display:flex;align-items:center;gap:16px;flex-shrink:0}
+.icon-btn{
+  background:none;border:none;color:var(--ink-2);cursor:pointer;
+  font-size:1.2rem;line-height:1;padding:6px;transition:color .2s;position:relative;
+}
+.icon-btn:hover{color:var(--ink)}
+
+/* --- Page Hero --- */
+.page-hero{
+  text-align:center;padding:clamp(60px,10vh,120px) var(--pad) clamp(40px,6vh,72px);
+}
+.page-hero h1{
+  font-family:var(--display-alt);font-weight:500;
+  font-size:clamp(2.4rem,5.5vw,4.2rem);color:var(--ink);
+  margin-bottom:20px;line-height:1.1;
+}
+.page-hero p{
+  max-width:54ch;margin:0 auto;font-size:1.08rem;font-weight:300;
+  line-height:1.8;color:var(--body-c);
+}
+
+/* --- Story Blocks (zigzag) --- */
+.story-block{
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);
+  align-items:center;
+  padding:clamp(40px,6vh,80px) var(--pad);
+}
+.story-block:nth-child(even) .story-img-wrap{order:2}
+.story-block:nth-child(even) .story-text{order:1}
+.story-img-wrap{
+  border-radius:var(--radius);overflow:hidden;
+  box-shadow:0 24px 56px -18px rgba(28,20,16,.16);
+  max-height:360px;
+}
+.story-img-wrap img{width:100%;height:100%;display:block;object-fit:cover;max-height:360px}
+.story-text{max-width:48ch}
+.story-text .util{display:block;margin-bottom:14px}
+.story-text h2{
+  font-family:var(--display-alt);font-weight:500;
+  font-size:clamp(1.6rem,3vw,2.4rem);color:var(--ink);
+  line-height:1.15;margin-bottom:18px;
+}
+.story-text p{font-size:1rem;line-height:1.82;margin-bottom:14px}
+.story-text p:last-child{margin-bottom:0}
+
+/* --- Divider --- */
+.divider{
+  width:60px;height:1.5px;background:var(--gold-lt);
+  margin:0 auto;
+}
+
+/* --- Values Grid --- */
+.values-section{
+  padding:clamp(56px,8vh,100px) var(--pad);
+  text-align:center;background:var(--surface-2);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.values-section h2{
+  font-family:var(--display-alt);font-weight:500;
+  font-size:clamp(1.8rem,3.4vw,2.8rem);color:var(--ink);
+  margin-bottom:48px;
+}
+.values-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:36px;max-width:960px;margin:0 auto;text-align:center;
+}
+.value-card{padding:28px 20px}
+.value-icon{
+  font-size:2rem;margin-bottom:16px;display:block;
+  color:var(--gold);
+}
+.value-card h3{
+  font-family:var(--display);font-weight:500;font-size:1.14rem;
+  color:var(--ink);margin-bottom:10px;
+}
+.value-card p{font-size:.9rem;line-height:1.7}
+
+/* --- CTA Banner --- */
+.cta-banner{
+  text-align:center;padding:clamp(56px,8vh,100px) var(--pad);
+}
+.cta-banner h2{
+  font-family:var(--display-alt);font-weight:500;
+  font-size:clamp(1.8rem,3.6vw,3rem);color:var(--ink);margin-bottom:16px;
+}
+.cta-banner p{max-width:44ch;margin:0 auto 30px;font-size:1.02rem;font-weight:300;line-height:1.8}
+.btn{
+  font-family:var(--util);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  padding:16px 30px;cursor:pointer;border:1.5px solid var(--deep);
+  background:var(--deep);color:#fff;transition:.25s;border-radius:var(--radius);
+  display:inline-block;
+}
+.btn:hover{background:#3D2A1E;border-color:#3D2A1E;box-shadow:0 6px 20px rgba(44,24,16,.2)}
+
+/* --- Footer --- */
+footer{
+  padding:54px var(--pad);border-top:1px solid var(--line);background:var(--surface-2);
+  display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;align-items:flex-end;
+}
+footer p{font-size:.8rem;max-width:30ch}
+
+/* --- Scroll Animations --- */
+[data-anim]{opacity:0;transform:translateY(36px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+[data-anim="left"]{transform:translateX(-40px)}
+[data-anim="right"]{transform:translateX(40px)}
+[data-anim].visible{opacity:1;transform:translateY(0) translateX(0)}
+[data-anim-delay="1"]{transition-delay:.1s}
+[data-anim-delay="2"]{transition-delay:.2s}
+[data-anim-delay="3"]{transition-delay:.3s}
+
+@media (max-width:860px){
+  .header-nav{display:none}
+  .logo-img{height:56px}
+  .story-block{grid-template-columns:1fr}
+  .story-block:nth-child(even) .story-img-wrap{order:0}
+  .story-block:nth-child(even) .story-text{order:0}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="announce-bar">
+  <span>Free shipping on all orders above ₹999. <a href="dev-creation-candles.html#collection">Shop now</a></span>
+</div>
+
+<header>
+  <a href="dev-creation-candles.html" class="mark"><img src="assets/Logos/logo.jpeg" alt="Dev Creation" class="logo-img"></a>
+  <nav class="header-nav">
+    <a href="dev-creation-candles.html#collection">Collection</a>
+    <a href="dev-creation-candles.html#ritual">Care</a>
+    <a href="our-story.html" class="active">Our Story</a>
+    <a href="dev-creation-candles.html#collection">Gifting</a>
+    <a href="dev-creation-candles.html#collection">Refills</a>
+  </nav>
+  <div class="header-icons">
+    <button class="icon-btn" aria-label="Search">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </button>
+    <button class="icon-btn" aria-label="Cart">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <h1 data-anim>Our Story</h1>
+  <p data-anim data-anim-delay="1">Each Dev Creation product is a labour of love — handcrafted with care, scented with the finest fragrance oils, and designed to transform every space it touches.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- Story Block 1 -->
+<div class="story-block">
+  <div class="story-img-wrap" data-anim="left">
+    <img src="assets/elegant-display-lit-candles-with-golden-holders-marble-table-featuring-decorative-plant_93675-335471.avif" alt="Dev Creation luxury wax products">
+  </div>
+  <div class="story-text" data-anim="right">
+    <span class="util">The beginning</span>
+    <h2>Where it all started</h2>
+    <p>We started because the air fresheners and wax products we found all smelled artificial and mass-produced. Nothing felt personal or luxurious.</p>
+    <p>So we decided to create our own — handmade wax sachets and melts crafted with pure soy wax and premium fragrance oils, designed to bring real elegance to everyday spaces.</p>
+  </div>
+</div>
+
+<!-- Story Block 2 -->
+<div class="story-block">
+  <div class="story-text" data-anim="left">
+    <span class="util">Our craft</span>
+    <h2>Made with love</h2>
+    <p>Every product is handmade in small batches. We use 100% pure soy wax — paraffin-free, unbleached, and safe for your clothes, wardrobes, and living spaces.</p>
+    <p>Our fragrance oils are IFRA-certified and carefully layered to feel rich, natural, and long-lasting. Never overpowering, always inviting.</p>
+  </div>
+  <div class="story-img-wrap" data-anim="right">
+    <img src="assets/Gifting/1.jpeg" alt="Dev Creation wax sachet">
+  </div>
+</div>
+
+<!-- Story Block 3 -->
+<div class="story-block">
+  <div class="story-img-wrap" data-anim="left">
+    <img src="assets/Gifting/2.jpeg" alt="Dev Creation wax sachet collection">
+  </div>
+  <div class="story-text" data-anim="right">
+    <span class="util">The experience</span>
+    <h2>Designed to delight</h2>
+    <p>From wardrobes to car dashboards, from bathrooms to gifting — our wax sachets are designed to fit seamlessly into your life and elevate every space.</p>
+    <p>Every piece is thoughtfully packaged and beautiful enough to gift. Because we believe fragrance is one of the most personal presents you can give.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- Values -->
+<section class="values-section">
+  <h2 data-anim>What we stand for</h2>
+  <div class="values-grid">
+    <div class="value-card" data-anim data-anim-delay="1">
+      <span class="value-icon">✦</span>
+      <h3>100% Handmade</h3>
+      <p>Every product is crafted by hand with meticulous attention, one small batch at a time.</p>
+    </div>
+    <div class="value-card" data-anim data-anim-delay="2">
+      <span class="value-icon">❋</span>
+      <h3>Long Lasting Fragrance</h3>
+      <p>Premium fragrance oils designed to fill your spaces gently for weeks.</p>
+    </div>
+    <div class="value-card" data-anim data-anim-delay="3">
+      <span class="value-icon">◈</span>
+      <h3>Premium Quality</h3>
+      <p>Pure soy wax and IFRA-compliant fragrance oils — nothing less.</p>
+    </div>
+    <div class="value-card" data-anim data-anim-delay="3">
+      <span class="value-icon">❖</span>
+      <h3>Perfect for Gifting</h3>
+      <p>Elegantly designed and beautifully packaged for every occasion.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <h2 data-anim>Ready to find your fragrance?</h2>
+  <p data-anim data-anim-delay="1">Explore our handcrafted collection of luxury wax sachets, melts, and aroma stones.</p>
+  <a href="dev-creation-candles.html#collection" class="btn" data-anim data-anim-delay="2">Shop the collection</a>
+</section>
+
+<footer>
+  <div>
+    <div><img src="assets/Logos/logo.jpeg" alt="Dev Creation" style="height:70px;width:auto;object-fit:contain"></div>
+    <p style="margin-top:16px">Handcrafted with love, Scented with care.</p>
+  </div>
+  <div style="text-align:right">
+    <div class="util" style="margin-bottom:10px">hello@devcreation.example</div>
+    <p style="margin-left:auto">Free shipping over ₹999 · Returns within 14 days</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const items = document.querySelectorAll('[data-anim]');
+  if(!items.length) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold:0.15, rootMargin:'0px 0px -40px 0px' });
+  items.forEach(el => observer.observe(el));
+})();
+</script>
+</body>
+</html>
